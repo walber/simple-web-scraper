@@ -120,7 +120,7 @@ class TextScraper(Scraper):
         self._data = soup.text.split()
 
 ```
-## _example.py_
+## _example1.py_
 The following example will print all the links available on https:/github.com
 ```python
 import sys
