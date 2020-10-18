@@ -1,6 +1,6 @@
-# Simple PyQt5 web scraper
+# Simple PyQt5 Web Scraper
 
-To run this web scraper you must perform the following steps to setup your environment.
+PyQt web scrapers can scrape both static **and dynamic** web pages. To run this web scraper you must perform the following steps to setup your environment.
 
 ### Install **pipenv**, _"a dependency manager for Python projects."_
 ```
@@ -101,7 +101,7 @@ class WebScraper(QApplication):
 
 ```
 ## _scrapers.py_
-The following classes are implementation of the abstract Scraper class from _web_scraper.py_. In this example, I used *BeautifulSoup* library to perform scrape functions. 
+The following classes are implementation of the abstract *Scraper* class from _web_scraper.py_. In this example, I used **BeautifulSoup** library to perform scrape functions. 
 ```python
 from web_scraper import Scraper
 from bs4 import BeautifulSoup as bs
