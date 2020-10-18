@@ -1,4 +1,4 @@
-# Simple PyQt web scraper
+# Simple PyQt5 web scraper
 
 To run this web scraper you must perform the following steps to setup your environment.
 
@@ -16,7 +16,7 @@ pipenv shell
 ```
 # Into the code
 ## _headers.json_
-Some servers are configured to block the default request headers, so here you can set them up avoiding that issue. I'm using the IPhone (mobile view) *user-agent* which usually has fewer visual elements than desktop view, will be scraped.
+Avoid being blocked by some servers by using the default headers. Here you can set the request headers. Notice that I'm using the IPhone (mobile view) *user-agent*, which usually has fewer visual elements (loads faster) than desktop view.
 ```json
 {
   "accept": "webp,image/apng,image/*,*/*;q=0.8",
@@ -27,6 +27,7 @@ Some servers are configured to block the default request headers, so here you ca
 }
 ```
 ## _web_scraper.py_
+This file contains the core of the application.
 ```python
 import json
 from abc import ABC
@@ -74,13 +75,13 @@ class WebScraper(QApplication):
 
 
     def _callback(self, page_src):
-        """Call the scrape function on page source and closes the view"""
+        """Call the scrape function on page source and close the view"""
         self._scraper.scrape(page_src)
         self.view.close()
 
 
     def _on_load_finished(self, successfully):
-        """Retrieve the page source a pass it the default callback"""
+        """Retrieve the page source and pass it to the default callback"""
         if successfully:
             self.view.page().toHtml(self._callback)
         else:
@@ -100,7 +101,7 @@ class WebScraper(QApplication):
 
 ```
 ## _scrapers.py_
-The following classes are implementation of the abstract Scraper class. In this example, I used *BeautifulSoup* library to perform scrape functions. 
+The following classes are implementation of the abstract Scraper class from _web_scraper.py_. In this example, I used *BeautifulSoup* library to perform scrape functions. 
 ```python
 from web_scraper import Scraper
 from bs4 import BeautifulSoup as bs
@@ -121,7 +122,7 @@ class TextScraper(Scraper):
 
 ```
 ## _example1.py_
-The following example will print all the links available on https:/github.com
+The following example will print all the links available on _https:/github.com_
 ```python
 import sys
 from scrapers import AnchorScraper
