@@ -1,7 +1,6 @@
-# Simple PyQt web scrapper
+# Simple PyQt web scraper
 
-## Setup:
-To run this web scraper you must perform the following steps to setup the environment.
+To run this web scraper you must perform the following steps to setup your environment.
 
 ### Install **pipenv**, _"a dependency manager for Python projects."_
 ```
@@ -27,7 +26,6 @@ Some servers are configured to block the default request headers, so here you ca
   "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
 }
 ```
-
 ## _web_scraper.py_
 ```python
 import json
@@ -63,11 +61,6 @@ class WebScraper(QApplication):
         self.view.loadFinished.connect(self._on_load_finished)
 
 
-    def _print_headers(self, reply):
-        hs = (f'{str(h, "utf-8")}: {str(v, "utf-8")}' for h, v in reply.rawHeaderPairs())
-        print('\n'.join(hs), end='\n\n')
-
-
     def _get_headers(self):
         """Return the request headers dictionary from headers.json"""
         headers = {}       
@@ -96,7 +89,7 @@ class WebScraper(QApplication):
 
 
     def load(self, url):
-        """Load the url and sets the headers"""
+        """Load the url and sets the request headers"""
         request = QWebEngineHttpRequest(QUrl(url))
         headers = self._get_headers()
 
@@ -107,7 +100,7 @@ class WebScraper(QApplication):
 
 ```
 ## _scrapers.py_
-The following classes are implementation of the abstract Scraper class. In this example, I used *beautifulSoup* library to perform scrape functions. 
+The following classes are implementation of the abstract Scraper class. In this example, I used *BeautifulSoup* library to perform scrape functions. 
 ```python
 from web_scraper import Scraper
 from bs4 import BeautifulSoup as bs
