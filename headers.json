@@ -1,0 +1,7 @@
+{
+  "accept": "webp,image/apng,image/*,*/*;q=0.8",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (IPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Chrome/84.0.4147.105 Safari/537.36"
+}
