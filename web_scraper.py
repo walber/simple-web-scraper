@@ -31,11 +31,6 @@ class WebScraper(QApplication):
         self.view.loadFinished.connect(self._on_load_finished)
 
 
-    def _print_headers(self, reply):
-        hs = (f'{str(h, "utf-8")}: {str(v, "utf-8")}' for h, v in reply.rawHeaderPairs())
-        print('\n'.join(hs), end='\n\n')
-
-
     def _get_headers(self):
         """Return the request headers dictionary from headers.json"""
         headers = {}       
@@ -49,13 +44,13 @@ class WebScraper(QApplication):
 
 
     def _callback(self, page_src):
-        """Call the scrape function on page source and closes the view"""
+        """Call the scrape function on page source and close the view"""
         self._scraper.scrape(page_src)
         self.view.close()
 
 
     def _on_load_finished(self, successfully):
-        """Retrieve the page source a pass it the default callback"""
+        """Retrieve the page source a pass it to the default callback"""
         if successfully:
             self.view.page().toHtml(self._callback)
         else:
@@ -64,7 +59,7 @@ class WebScraper(QApplication):
 
 
     def load(self, url):
-        """Load the url and sets the headers"""
+        """Load the url and sets the request headers"""
         request = QWebEngineHttpRequest(QUrl(url))
         headers = self._get_headers()
 
